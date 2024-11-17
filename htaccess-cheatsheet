@@ -1,0 +1,21 @@
+Denzle's Htaccess Cheatsheet
+
+# 1 # Example Redirects
+
+## Simple single redirects - As the name suggests, for simple redirects needed
+# Syntax = redirect [status code] [old URL] [new URL]
+
+# 301 redirect a single page
+redirect 301 /old-page-url.html https://www.example.uk/new-page-url
+
+# 301 Redirect an entire site
+Redirect 301 / https://www.example.uk/
+
+## Redirect using rewrite - Use this for more complex redirects
+# rewrite flags - https://httpd.apache.org/docs/2.4/rewrite/flags.html
+
+# 301 Redirect www to non-www ignoring case with [nc]
+RewriteEngine on
+RewriteBase /
+rewritecond %{http_host} ^www.example.uk [nc]
+rewriterule ^(.*)$ https://example.uk/$1 [r=301,nc]
